@@ -18,4 +18,14 @@ struct Fillet: ConnectingElementDescription {
     init(radius: CGFloat) {
         self.radius = radius
     }
+
+
+    var isCompletelyDefined: Bool {
+        false
+    }
+
+
+    var reversed: PathElementDescription {
+        self
+    }
 }

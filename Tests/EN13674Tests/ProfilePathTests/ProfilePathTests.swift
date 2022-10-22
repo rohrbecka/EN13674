@@ -19,9 +19,12 @@ final class ProfilePathTests: XCTestCase {
         }
 
         if sut.elements.count == 3 {
-            XCTAssertEqual(sut.elements[0] as? LineElement, LineElement(start: CGPoint(x: 0, y: 0), end: (CGPoint(x: 20, y: 0))))
-            XCTAssertEqual(sut.elements[1] as? LineElement, LineElement(start: CGPoint(x: 20, y: 0), end: (CGPoint(x: 20, y: 10))))
-            XCTAssertEqual(sut.elements[2] as? LineElement, LineElement(start: CGPoint(x: 20, y: 10), end: (CGPoint(x: 0, y: 10))))
+            XCTAssertEqual(sut.elements[0] as? LineElement,
+                           LineElement(start: CGPoint(x: 0, y: 0), end: (CGPoint(x: 20, y: 0))))
+            XCTAssertEqual(sut.elements[1] as? LineElement,
+                           LineElement(start: CGPoint(x: 20, y: 0), end: (CGPoint(x: 20, y: 10))))
+            XCTAssertEqual(sut.elements[2] as? LineElement,
+                           LineElement(start: CGPoint(x: 20, y: 10), end: (CGPoint(x: 0, y: 10))))
         } else {
             XCTFail("Wrong number of elements. Expected 3, got \(sut.elements.count)")
         }
@@ -37,8 +40,10 @@ final class ProfilePathTests: XCTestCase {
         // expected result goes from (0, 0) to (10, 0) and to (10, 10)
 
         if sut.elements.count == 2 {
-            XCTAssertEqual(sut.elements[0] as? LineElement, LineElement(start: CGPoint(x: 0, y: 0), end: (CGPoint(x: 10, y: 0))))
-            XCTAssertEqual(sut.elements[1] as? LineElement, LineElement(start: CGPoint(x: 10, y: 0), end: (CGPoint(x: 10, y: 10))))
+            XCTAssertEqual(sut.elements[0] as? LineElement,
+                           LineElement(start: CGPoint(x: 0, y: 0), end: (CGPoint(x: 10, y: 0))))
+            XCTAssertEqual(sut.elements[1] as? LineElement,
+                           LineElement(start: CGPoint(x: 10, y: 0), end: (CGPoint(x: 10, y: 10))))
         } else {
             XCTFail("Wrong number of elements. Expected 2, got \(sut.elements.count).")
         }
@@ -54,9 +59,15 @@ final class ProfilePathTests: XCTestCase {
         }
 
         if sut.elements.count == 3 {
-            XCTAssertEqual(sut.elements[0] as? LineElement, LineElement(start: CGPoint(x: 10, y: 10), end: CGPoint(x: 15, y: 10)))
-            XCTAssertEqual(sut.elements[1] as? ArcElement, ArcElement(center: CGPoint(x: 15.0, y: 15.0), radius: 5.0, start: CGPoint(x: 15, y: 10), end: CGPoint(x: 20, y: 15)))
-            XCTAssertEqual(sut.elements[2] as? LineElement, LineElement(start: CGPoint(x: 20, y: 15), end: CGPoint(x: 20, y: 20)))
+            XCTAssertEqual(sut.elements[0] as? LineElement,
+                           LineElement(start: CGPoint(x: 10, y: 10), end: CGPoint(x: 15, y: 10)))
+            XCTAssertEqual(sut.elements[1] as? ArcElement,
+                           ArcElement(center: CGPoint(x: 15.0, y: 15.0),
+                                      radius: 5.0,
+                                      start: CGPoint(x: 15, y: 10),
+                                      end: CGPoint(x: 20, y: 15)))
+            XCTAssertEqual(sut.elements[2] as? LineElement,
+                           LineElement(start: CGPoint(x: 20, y: 15), end: CGPoint(x: 20, y: 20)))
         } else {
             XCTFail("Wrong number of elements. Expected 3, got \(sut.elements.count).")
         }
@@ -67,7 +78,7 @@ final class ProfilePathTests: XCTestCase {
 
 
 extension LineElement: Equatable {
-    public static func == (lhs: LineElement, rhs: LineElement) -> Bool{
+    public static func == (lhs: LineElement, rhs: LineElement) -> Bool {
         lhs.start.distance(to: rhs.start) < 0.00000001 &&
         lhs.end.distance(to: rhs.end) < 0.00000001
     }

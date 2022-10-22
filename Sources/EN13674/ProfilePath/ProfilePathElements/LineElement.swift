@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  LineElement.swift
 //  
 //
 //  Created by André Rohrbeck on 15.09.22.
@@ -15,19 +15,54 @@ public struct LineElement {
 
     /// The end point
     public var end: CGPoint
+
+    /// `true` if the ``end`` is a valid end point, which may be used to append the next ``PathElement``.
+    public let isEndValidEndPoint: Bool
+
+
+    public init(start: CGPoint, end: CGPoint, isEndValidEndPoint: Bool = true) {
+        self.start = start
+        self.end = end
+        self.isEndValidEndPoint = isEndValidEndPoint
+    }
+
+
+
+    public init(start: CGPoint, heading: Angle, length: CGFloat) {
+        self.start = start
+        self.end = CGPoint(x: start.x + cos(heading.rad) * length,
+                           y: start.y + sin(heading.rad) * length)
+        self.isEndValidEndPoint = false
+    }
+
+
+
+    public init(heading: Angle, length: CGFloat, end: CGPoint) {
+        self.end = end
+        self.start = CGPoint(x: end.x - cos(heading.rad) * length,
+                             y: end.y - sin(heading.rad) * length)
+        self.isEndValidEndPoint = true
+    }
 }
 
 
 
-
 extension LineElement: PathElement {
-    public var endPoint: CGPoint {
-        end
+    public var endPoint: CGPoint? {
+        guard isEndValidEndPoint else {
+            return nil
+        }
+        return end
     }
 
 
     public var endHeading: Angle {
         GeometricCalculations.angle(of: end, inRespectTo: start)
+    }
+
+
+    internal var reversed: Self {
+        LineElement(start: end, end: start)
     }
 }
 
@@ -35,7 +70,8 @@ extension LineElement: PathElement {
 
 extension LineElement {
     var isVertical: Bool {
-        start.x == end.x
+        abs(start.x - end.x) < 0.0000001
+        //        start.x == end.x
     }
 
 
@@ -43,6 +79,7 @@ extension LineElement {
         start.y == end.y
     }
 
+    // swiftlint:disable identifier_name
     var m: Double {
         (end.y - start.y) / (end.x - start.x)
     }
@@ -66,6 +103,7 @@ extension LineElement {
     var length: Double {
         sqrt( dx * dx + dy * dy )
     }
+    // swiftlint:enable identifier_name
 
 
     /// The direction of this ``StraightLine`` in degrees from 0° to 360° (excluded)
@@ -79,12 +117,12 @@ extension LineElement {
                 return 270.0
             }
         } else {
-            var angle = atan (dy/dx) * 180.0 / Double.pi
+            var angle = atan(dy/dx) * 180.0 / Double.pi
             if dx < 0 {
-                angle = angle + 180
+                angle += 180
             }
             while angle < 0 {
-                angle = angle + 360.0
+                angle += 360.0
             }
             return angle
         }

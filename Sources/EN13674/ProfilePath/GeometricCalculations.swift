@@ -21,6 +21,7 @@ internal enum GeometricCalculations {
     internal static func intersection(_ line0: LineElement, _ line1: LineElement) throws -> Intersection {
         let intersectionPoint: CGPoint
 
+        // swiftlint:disable identifier_name
         if line0.isVertical && line1.isVertical {
             if line0.start.x == line1.start.x {
                 throw GeometricCalculationError.identicalLines
@@ -32,10 +33,13 @@ internal enum GeometricCalculations {
         } else if line1.isVertical {
             intersectionPoint = CGPoint(x: line1.start.x, y: line0.y(atX: line1.start.x))
         } else { // both lines are not vertical, use equation to find result
+            // TODO: The following is a problem in cases, where m is near to inf (the light is nearly vertical)
+            // in these cases, both ∆b is divided by infinity, which results in weird values for x-
             let x = (line1.b - line0.b) / (line0.m - line1.m)
             let y = line0.y(atX: x)
             intersectionPoint = CGPoint(x: x, y: y)
         }
+        // swiftlint:enable identifier_name
 
         return Intersection(point: intersectionPoint,
                             element0: line0,
@@ -69,13 +73,15 @@ internal enum GeometricCalculations {
 
     /// Returns the intersections between a ``Circle`` and a ``StraightLine``.
     ///
-    /// There may be 0, 1 or 2 intersections. In the case of 0 intersections, this function throws a ``noIntersection`` error.
+    /// There may be 0, 1 or 2 intersections. In the case of 0 intersections, this function throws a
+    /// ``noIntersection`` error.
     /// In the case of 1 or 2 intersections, the intersections are returned as a Set of points.
     ///
     /// - Parameter circle: The ``Circle``.
     /// - Parameter line: The ``StraightLine``.
     /// - Returns The intersections between the ``line``and the ``circle``, if there are any.
     /// - Throws: A ``GeometricCalculationError.noIntersection`` if there are no intersections.
+    // swiftlint:disable identifier_name
     internal static func intersectionPoints(_ circle: Circle, _ line: LineElement) throws -> Set<CGPoint> {
         let xLine = line.start.x
         let r = circle.radius
@@ -99,7 +105,7 @@ internal enum GeometricCalculations {
             let q = (b*b + c.x*c.x - 2*c.y*b + c.y*c.y - r*r) / (1 + m*m)
 
             let xValues = pqFormula(p: p, q: q)
-            if xValues.count == 0 {
+            if xValues.isEmpty {
                 throw GeometricCalculationError.noIntersection
             } else {
                 return Set(xValues.map {
@@ -108,6 +114,7 @@ internal enum GeometricCalculations {
             }
         }
     }
+    // swiftlint:enable identifier_name
 
 
 
@@ -120,6 +127,7 @@ internal enum GeometricCalculations {
     /// - Parameter p: The linear term *p*.
     /// - Parameter q: The constant termi *q*.
     /// - Returns the solutions for x.
+    // swiftlint:disable identifier_name
     private static func pqFormula(p: Double, q: Double) -> Set<Double> {
         let radix = (p/2.0) * (p/2.0) - q
         if radix < 0 {
@@ -129,6 +137,7 @@ internal enum GeometricCalculations {
                          -p/2 - sqrt(radix)])
         }
     }
+    // swiftlint:enable identifier_name
 
 
 
@@ -137,15 +146,18 @@ internal enum GeometricCalculations {
     /// - Parameter line: The line to which to calculate the parallel.
     /// - Parameter distance: The distance in which the parallel shall be calculated. negative numbers are left.
     /// - Returns The line parallel to the given `line` in the given `distance`.
+    // swiftlint:disable identifier_name
     internal static func parallel(to line: LineElement, distance: Double) -> LineElement {
         let dx = (line.end.y - line.start.y) / line.length * distance
         let dy = -(line.end.x - line.start.x) / line.length * distance
         let shift = CGPoint(x: dx, y: dy)
         return LineElement(start: line.start + shift, end: line.end + shift)
     }
+    // swiftlint:enable identifier_name
 
 
 
+    // swiftlint:disable identifier_name
     internal static func angle(of point: CGPoint, inRespectTo center: CGPoint) -> Angle {
         let dx = point.x - center.x
         let dy = point.y - center.y
@@ -157,11 +169,12 @@ internal enum GeometricCalculations {
             let angle = atan(dy / dx)
             if dx > 0 {
                 return Angle(radians: angle)
-            } else{
+            } else {
                 return Angle(radians: angle + Double.pi)
             }
         }
     }
+    // swiftlint:enable identifier_name
 
 
 
@@ -170,7 +183,8 @@ internal enum GeometricCalculations {
     /// The returned angle is in fact the optimum change in "heading" of the lines.
     /// - Parameter line0: The first line,
     /// - Parameter line1: The second line.
-    /// - Returns: The change of heading from `line0`to `line1` given in degrees from -180° (excluded) to 180° (included).
+    /// - Returns: The change of heading from `line0`to `line1` given in degrees from
+    ///             -180° (excluded) to 180° (included).
     internal static func angle(between line0: LineElement, and line1: LineElement) -> Angle {
         Angle(degrees: (line1.heading - line0.heading))
     }
@@ -227,9 +241,11 @@ internal enum GeometricCalculations {
 
 
 
-
     internal static func fillet(_ arc: ArcElement, _ line: LineElement, radius: Double) throws -> ArcElement {
-        let parallelArc = ArcElement(center: arc.center, radius: arc.radius - radius, startAngle: arc.startAngle, endAngle: arc.endAngle)
+        let parallelArc = ArcElement(center: arc.center,
+                                     radius: arc.radius - radius,
+                                     startAngle: arc.startAngle,
+                                     endAngle: arc.endAngle)
         let parallelLine0 = parallel(to: line, distance: radius)
         let parallelLine1 = parallel(to: line, distance: -radius)
 
@@ -243,7 +259,11 @@ internal enum GeometricCalculations {
             let startAngle = LineElement(start: arc.center, end: filletCenter).heading * Double.pi / 180.0
             let start = filletCenter + CGPoint(x: radius * cos(startAngle), y: radius * sin(startAngle))
             if let end = try? intersection(line, perpendicular(to: line, through: filletCenter)) {
-                return ArcElement(center: filletCenter, radius: radius, start: start, end: end.point, negativeDirection: arc.negativeDirection)
+                return ArcElement(center: filletCenter,
+                                  radius: radius,
+                                  start: start,
+                                  end: end.point,
+                                  negativeDirection: arc.negativeDirection)
             }
         }
         throw GeometricCalculationError.noIntersection
@@ -251,7 +271,10 @@ internal enum GeometricCalculations {
 
 
 
-    private static func headingChange (_ circle: Circle, _ line: LineElement, at point: CGPoint?, negativeDirection: Bool) -> Double? {
+    private static func headingChange (_ circle: Circle,
+                                       _ line: LineElement,
+                                       at point: CGPoint?,
+                                       negativeDirection: Bool) -> Double? {
         guard let point else {
             return nil
         }

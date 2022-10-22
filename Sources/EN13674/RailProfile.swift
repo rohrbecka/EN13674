@@ -28,3 +28,11 @@ public protocol RailProfile: CustomStringConvertible {
     /// - Returns: An array o f``CGPoint``s representing the profile.
     func profile(resolution: Double) -> [CGPoint]
 }
+
+
+
+extension RailProfile {
+    func profile() -> [CGPoint] {
+        profile(resolution: 0.5)
+    }
+}

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+// swiftlint:disable identifier_name
 
 /// The different types of profiles, which are defined in EN 13674-1:2017, Appendix A.
 ///

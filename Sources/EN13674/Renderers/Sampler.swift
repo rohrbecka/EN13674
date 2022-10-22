@@ -5,16 +5,18 @@
 //  Created by André Rohrbeck on 04.08.22.
 //
 
-//TODO: This is double code from EN 13715 MUST be moved to separate Package!
+// TODO: This is double code from EN 13715 MUST be moved to separate Package!
 
 import Foundation
 
 internal enum Sampler {
 
-    /// Returns an Array of points on a straight line from `start` to `end` without the `start` point, but including the `end`.
+    /// Returns an Array of points on a straight line from `start` to `end` without the `start` point, but including
+    /// the `end`.
     ///
-    /// The array is returned without `start`, but including `end` and the guarantee, that no two neighboring points have a larger
-    /// distance than `resolution`. This includes the distance from `start` to the first element of the result array.
+    /// The array is returned without `start`, but including `end` and the guarantee, that no two neighboring points
+    /// have a larger distance than `resolution`. This includes the distance from `start` to the first element of the
+    /// result array.
     ///
     /// - Parameters:
     ///   - start: The starting point, which will *not* be included in the returned `Array`.
@@ -66,10 +68,10 @@ internal enum Sampler {
             ? (startAngleRad - endAngleRad) * radius
             : (endAngleRad - startAngleRad) * radius
         if arcLength < 0 {
-            arcLength = arcLength + 2 * Double.pi * radius
+            arcLength += 2 * Double.pi * radius
         }
         arcLength = arcLength.truncatingRemainder(dividingBy: 2*Double.pi * radius)
-        let numberOfPoints = Int (arcLength / resolution) + 1
+        let numberOfPoints = Int(arcLength / resolution) + 1
         let result = (0..<numberOfPoints)
             .map {
                 if $0 == numberOfPoints-1 {
@@ -124,20 +126,21 @@ internal enum Sampler {
     /// - Parameter p0: The first point.
     /// - Parameter p1: The second point.
     /// - Returns The distance.
-    private static func distance(from p0: CGPoint, to p1: CGPoint) -> Double {
-        let xDist = p1.x - p0.x
-        let yDist = p1.y - p0.y
+    private static func distance(from point0: CGPoint, to point1: CGPoint) -> Double {
+        let xDist = point1.x - point0.x
+        let yDist = point1.y - point0.y
         return sqrt(yDist*yDist + xDist*xDist)
     }
 
 
-    //TODO: move to GeometricCalculations
-    /// Returns the ange of the given `point` in respect to the `center` point.
+    // TODO: move to GeometricCalculations
+    /// Returns the angle of the given `point` in respect to the `center` point.
     ///
     /// - Parameters:
     ///   - point: The point of which to calculate the angle.
     ///   - center: The center point in respect to whcih to calculate the angle.
     /// - Returns: The angle of the `point` in respect to the `center` in radians.
+    // swiftlint:disable identifier_name
     internal static func angle(of point: CGPoint, inRespectTo center: CGPoint) -> Double {
         let dx = point.x - center.x
         let dy = point.y - center.y
@@ -149,9 +152,10 @@ internal enum Sampler {
             let angle = atan(dy / dx)
             if dx > 0 {
                 return angle
-            } else{
+            } else {
                 return angle + Double.pi
             }
         }
     }
+    // swiftlint:enable identifier_name
 }

@@ -8,7 +8,7 @@
 import XCTest
 import EN13674
 
-internal final class CGPoint_Tests: XCTestCase {
+internal final class CGPointTests: XCTestCase {
     internal func testInitialisationBasedOnTuple() {
         let sut0 = CGPoint((0, 0))
         let sut1 = CGPoint((4.7, 1.1))
@@ -25,11 +25,11 @@ internal final class CGPoint_Tests: XCTestCase {
 
 
 
-extension CGPoint_Tests {
+extension CGPointTests {
     func testAddition() {
-        let p0 = CGPoint(x: 12.3, y: 45.6)
-        let p1 = CGPoint(x: -7.8, y: -9.0)
-        let result = p0 + p1
+        let point0 = CGPoint(x: 12.3, y: 45.6)
+        let point1 = CGPoint(x: -7.8, y: -9.0)
+        let result = point0 + point1
 
         let expectedResult = CGPoint(x: 4.5, y: 36.6)
         XCTAssertEqual(expectedResult.x, result.x, accuracy: 0.0000001)
@@ -39,10 +39,10 @@ extension CGPoint_Tests {
 
 
     func testMultiplication() {
-        let p0 = CGPoint(x: 12.3, y: 45.6)
-        let p1 = CGPoint(x: -7.8, y: -9.0)
-        let result0 = p0 * 4
-        let result1 = p1 * (-2.5)
+        let point0 = CGPoint(x: 12.3, y: 45.6)
+        let point1 = CGPoint(x: -7.8, y: -9.0)
+        let result0 = point0 * 4
+        let result1 = point1 * (-2.5)
 
         let expectedResult0 = CGPoint(x: 49.2, y: 182.4)
         let expectedResult1 = CGPoint(x: 19.5, y: 22.5)
@@ -55,10 +55,10 @@ extension CGPoint_Tests {
 
 
     func testDivision() {
-        let p0 = CGPoint(x: 12.3, y: 45.6)
-        let p1 = CGPoint(x: -7.8, y: -9.0)
-        let result0 = p0 / 0.25
-        let result1 = p1 / (-0.4)
+        let point0 = CGPoint(x: 12.3, y: 45.6)
+        let point1 = CGPoint(x: -7.8, y: -9.0)
+        let result0 = point0 / 0.25
+        let result1 = point1 / (-0.4)
 
         let expectedResult0 = CGPoint(x: 49.2, y: 182.4)
         let expectedResult1 = CGPoint(x: 19.5, y: 22.5)

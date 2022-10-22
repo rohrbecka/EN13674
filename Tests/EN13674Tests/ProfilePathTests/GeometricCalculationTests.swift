@@ -41,7 +41,8 @@ final class GeometricCalculationTests: XCTestCase {
 
         XCTAssertThrowsError(try GeometricCalculations.intersectionPoints(circle, verticalLine0))
         XCTAssertEqual(try? GeometricCalculations.intersectionPoints(circle, verticalLine1), [CGPoint(x: 2.0, y: 2.0)])
-        XCTAssertEqual(try? GeometricCalculations.intersectionPoints(circle, verticalLine2), [CGPoint(x: 3.0, y: 1.0), CGPoint(x: 3.0, y: 3.0)])
+        XCTAssertEqual(try? GeometricCalculations.intersectionPoints(circle, verticalLine2),
+                       [CGPoint(x: 3.0, y: 1.0), CGPoint(x: 3.0, y: 3.0)])
         XCTAssertThrowsError(try GeometricCalculations.intersectionPoints(circle, verticalLine3))
     }
 
@@ -54,8 +55,10 @@ final class GeometricCalculationTests: XCTestCase {
         let horizontalLine3 = LineElement(start: CGPoint(x: 0, y: -3.1), end: CGPoint(x: 20, y: -3.1))
 
         XCTAssertThrowsError(try GeometricCalculations.intersectionPoints(circle, horizontalLine0))
-        XCTAssertEqual(try? GeometricCalculations.intersectionPoints(circle, horizontalLine1), [CGPoint(x: -3.0, y: -1.0)])
-        XCTAssertEqual(try? GeometricCalculations.intersectionPoints(circle, horizontalLine2), [CGPoint(x: -4.0, y: -2.0), CGPoint(x: -2.0, y: -2.0)])
+        XCTAssertEqual(try? GeometricCalculations.intersectionPoints(circle, horizontalLine1),
+                       [CGPoint(x: -3.0, y: -1.0)])
+        XCTAssertEqual(try? GeometricCalculations.intersectionPoints(circle, horizontalLine2),
+                       [CGPoint(x: -4.0, y: -2.0), CGPoint(x: -2.0, y: -2.0)])
         XCTAssertThrowsError(try GeometricCalculations.intersectionPoints(circle, horizontalLine3))
     }
 

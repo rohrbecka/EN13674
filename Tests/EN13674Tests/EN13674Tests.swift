@@ -3,15 +3,16 @@ import XCTest
 
 final class EN13674Tests: XCTestCase {
     func testExample() throws {
-        let profile = EN13674.profile(.p46E1)
+        let profile = EN13674.profile(.p60E2)
         let points = profile.profile()
 
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 3
         formatter.maximumFractionDigits = 3
         for point in points {
-            print("\(formatter.string(from: NSNumber(value: point.x)) ?? "")\t\(formatter.string(from: NSNumber(value: point.y)) ?? "")")
+            let xString = formatter.string(from: NSNumber(value: point.x)) ?? ""
+            let yString = formatter.string(from: NSNumber(value: point.y)) ?? ""
+            print("\(xString)\t\(yString)")
         }
-
     }
 }

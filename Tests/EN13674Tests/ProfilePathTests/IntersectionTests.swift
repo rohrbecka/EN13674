@@ -10,6 +10,6 @@ import XCTest
 
 final class IntersectionTests: XCTestCase {
 
-    
+
 
 }

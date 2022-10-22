@@ -22,6 +22,10 @@ struct Arc: PathElementDescription {
     /// The center of the arc.
     var center: CGPoint?
 
+    var startAngle: Angle?
+
+    var endAngle: Angle?
+
     /// The starting point.
     var start: CGPoint?
 
@@ -31,11 +35,14 @@ struct Arc: PathElementDescription {
     /// The x-coordinate of the endpoint.
     var toX: CGFloat?
 
+
+    var fromX: CGFloat?
+
     /// Whether the arc is drawn in negative (clockwise) or positive (counterclockwise) direction.
     var negativeDirection: Bool
 
     /// The y-coordinate of the center.
-    var centerY: Double?
+    var centerY: CGFloat?
 
 
     /// Describes an arc based on the starting point, the x-coordinate of the end point, the center and the radius.
@@ -70,6 +77,32 @@ struct Arc: PathElementDescription {
     }
 
 
+    init(radius: CGFloat, _ direction: Direction) {
+        self.radius = radius
+        self.negativeDirection = direction == .clockwise
+    }
+
+
+
+    init(radius: CGFloat, fromX: CGFloat, _ direction: Direction) {
+        self.radius = radius
+        self.fromX = fromX
+        self.negativeDirection = direction == .clockwise
+    }
+
+
+    init(radius: CGFloat,
+         center: (CGFloat, CGFloat),
+         fromX: CGFloat,
+         to end: (CGFloat, CGFloat),
+         _ direction: Direction) {
+        self.radius = radius
+        self.center = CGPoint(x: center.0, y: center.1)
+        self.fromX = fromX
+        self.end = CGPoint(x: end.0, y: end.1)
+        self.negativeDirection = direction == .clockwise
+    }
+
 
     init(radius: Double, centerY: Double, _ direction: Direction) {
         self.radius = radius
@@ -77,9 +110,47 @@ struct Arc: PathElementDescription {
         self.centerY = centerY
     }
 
-    
 
-    static func endPoint(center: CGPoint, radius: CGFloat, start: CGPoint, toX: CGFloat, negativeDirection: Bool ) -> CGPoint {
+    init(radius: Double, _ direction: Direction, to endAngle: Angle) {
+        self.radius = radius
+        self.negativeDirection = direction == .clockwise
+        self.endAngle = endAngle
+    }
+
+
+    init(radius: Double, fromHeading: Angle, _ direction: Direction) {
+        self.radius = radius
+        self.negativeDirection = direction == .clockwise
+        self.startAngle = negativeDirection
+            ? fromHeading + Angle(degrees: 90)
+            : fromHeading - Angle(degrees: 90)
+    }
+
+
+    init(radius: Double, _ direction: Direction, toHeading: Angle) {
+        self.radius = radius
+        self.negativeDirection = direction == .clockwise
+        self.endAngle = negativeDirection
+            ? toHeading + Angle(degrees: 90)
+            : toHeading - Angle(degrees: 90)
+    }
+
+
+
+    init(radius: Double, center: (Double, Double), _ direction: Direction) {
+        self.radius = radius
+        self.negativeDirection = direction == .clockwise
+        self.center = CGPoint(x: center.0, y: center.1)
+    }
+
+
+
+    static func endPoint(center: CGPoint,
+                         radius: CGFloat,
+                         start: CGPoint,
+                         toX: CGFloat,
+                         negativeDirection: Bool ) -> CGPoint {
+        // swiftlint:disable identifier_name
         let dx = toX - center.x
         let targetAngle0 = acos(dx / radius)
         let targetAngle1 = -targetAngle0
@@ -93,6 +164,50 @@ struct Arc: PathElementDescription {
         } else {
             return GeometricCalculations.circlePoint(center: center, radius: radius, angle: targetAngle0)
         }
+        // swiftlint:ensable identifier_name
+    }
 
+
+
+    var isCompletelyDefined: Bool {
+        center != nil && start != nil && end != nil
+        || center != nil && fromX != nil && end != nil
+    }
+
+
+
+    private init(radius: CGFloat,
+                 center: CGPoint?,
+                 startAngle: Angle?,
+                 endAngle: Angle?,
+                 start: CGPoint?,
+                 end: CGPoint?,
+                 fromX: CGFloat?,
+                 toX: CGFloat?,
+                 negativeDirection: Bool,
+                 centerY: CGFloat?) {
+        self.radius = radius
+        self.center = center
+        self.startAngle = startAngle
+        self.endAngle = endAngle
+        self.start = start
+        self.end = end
+        self.toX = toX
+        self.negativeDirection = negativeDirection
+        self.centerY = centerY
+    }
+
+
+    var reversed: PathElementDescription {
+        return Arc(radius: radius,
+                   center: center,
+                   startAngle: endAngle,
+                   endAngle: startAngle,
+                   start: end,
+                   end: start,
+                   fromX: toX,
+                   toX: fromX,
+                   negativeDirection: !negativeDirection,
+                   centerY: centerY)
     }
 }

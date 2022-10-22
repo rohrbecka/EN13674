@@ -29,7 +29,7 @@ extension CGPoint {
     /// - Parameter lhs: The first point.
     /// - Parameter rhs: The second point.
     /// - Returns The point obtained by summarizing the x and y co-ordinates of both points.
-    public static func +(lhs: CGPoint, rhs: CGPoint) -> CGPoint{
+    public static func + (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
         CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
     }
 
@@ -44,7 +44,7 @@ extension CGPoint {
     /// - Parameter point: The point to scale.
     /// - Parameter factor: The factor  by which to scale the point
     /// - Returns The point obtained by scaling the `point` by the `factor`.
-    public static func *(point: CGPoint, factor: Double) -> CGPoint {
+    public static func * (point: CGPoint, factor: Double) -> CGPoint {
         CGPoint(x: point.x * factor, y: point.y * factor)
     }
 
@@ -59,7 +59,7 @@ extension CGPoint {
     /// - Parameter point: The point to scale.
     /// - Parameter divisor: The divisor  by which to scale the point.
     /// - Returns The point obtained by scaling the `point` by the `factor`.
-    public static func /(point: CGPoint, divisor: Double) -> CGPoint {
+    public static func / (point: CGPoint, divisor: Double) -> CGPoint {
         point * (1.0/divisor)
     }
 }
@@ -73,5 +73,3 @@ extension CGPoint {
         return sqrt(xdist * xdist + ydist * ydist)
     }
 }
-
-

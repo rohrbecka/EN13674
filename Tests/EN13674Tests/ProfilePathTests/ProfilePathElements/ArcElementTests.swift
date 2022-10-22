@@ -17,7 +17,7 @@ final class ArcElementTests: XCTestCase {
                               endAngle: Angle(degrees: 90.0),
                               negativeDirection: true)
 
-        let sut1 = ArcElement(center: CGPoint (x: 0.0, y: 0.0),
+        let sut1 = ArcElement(center: CGPoint(x: 0.0, y: 0.0),
                               radius: sqrt(2),
                               startAngle: Angle(degrees: 45.0),
                               endAngle: Angle(degrees: 315.0))
@@ -58,16 +58,16 @@ final class ArcElementTests: XCTestCase {
 
 
     func testAngularLength() {
-        let positiveDirectionArc = ArcElement (center: CGPoint(x: 0, y: 0),
-                                               radius: 2.0,
-                                               startAngle: Angle(degrees: 180.0),
-                                               endAngle: Angle(degrees: 20.0))
+        let positiveDirectionArc = ArcElement(center: CGPoint(x: 0, y: 0),
+                                              radius: 2.0,
+                                              startAngle: Angle(degrees: 180.0),
+                                              endAngle: Angle(degrees: 20.0))
         XCTAssertEqual(positiveDirectionArc.angularLength(to: CGPoint(x: 0, y: 2)).degrees, 270.0)
 
-        let negativeDirectionArc = ArcElement (center: CGPoint(x: 0, y: 0),
-                                               radius: 2.0,
-                                               startAngle: Angle(degrees: 90.0),
-                                               endAngle: Angle(degrees: 20.0),
+        let negativeDirectionArc = ArcElement(center: CGPoint(x: 0, y: 0),
+                                              radius: 2.0,
+                                              startAngle: Angle(degrees: 90.0),
+                                              endAngle: Angle(degrees: 20.0),
                                                negativeDirection: true)
         XCTAssertEqual(negativeDirectionArc.angularLength(to: CGPoint(x: -2, y: 0)).degrees, 270.0)
     }

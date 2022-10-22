@@ -57,13 +57,23 @@ internal struct ArcElement: Equatable {
         self.endAngle = GeometricCalculations.angle(of: end, inRespectTo: center)
         self.negativeDirection = negativeDirection
     }
+
+
+
+    var reversed: Self {
+        ArcElement(center: center,
+                   radius: radius,
+                   startAngle: endAngle,
+                   endAngle: startAngle,
+                   negativeDirection: !negativeDirection)
+    }
 }
 
 
 
 extension ArcElement: PathElement {
 
-    public var endPoint: CGPoint {
+    public var endPoint: CGPoint? {
         end
     }
 

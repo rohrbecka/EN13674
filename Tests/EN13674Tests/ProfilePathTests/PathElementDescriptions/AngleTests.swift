@@ -38,6 +38,28 @@ final class AngleTests: XCTestCase {
 
 
 
+    func testCreationOfAngleBasedOnXYRatio() {
+        let sut0 = Angle(dx: 20, dy: 0)
+        let sut90 = Angle(dx: 0, dy: 1.0)
+        let sut180 = Angle(dx: -3, dy: 0)
+        let sut270 = Angle(dx: 0, dy: -1)
+
+        let sut45 = Angle(dx: 1, dy: 1)
+        let sut135 = Angle(dx: -3, dy: 3)
+        let sut225 = Angle(dx: -2, dy: -2)
+        let sut315 = Angle(dx: 1.5, dy: -1.5)
+
+        XCTAssertEqual(sut0.degrees, 0)
+        XCTAssertEqual(sut45.degrees, 45)
+        XCTAssertEqual(sut90.degrees, 90)
+        XCTAssertEqual(sut135.degrees, 135)
+        XCTAssertEqual(sut180.degrees, 180)
+        XCTAssertEqual(sut225.degrees, 225)
+        XCTAssertEqual(sut270.degrees, 270)
+        XCTAssertEqual(sut315.degrees, 315)
+    }
+
+
     func testReturnOfNormalisedRadiansValue() {
         let sut0 = Angle(radians: Double.pi/2.0*5.0)
         let sut1 = Angle(radians: -Double.pi/2.0*5.0)
