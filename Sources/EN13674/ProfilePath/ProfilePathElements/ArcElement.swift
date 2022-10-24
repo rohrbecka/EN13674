@@ -73,6 +73,17 @@ internal struct ArcElement: Equatable {
 
 extension ArcElement: PathElement {
 
+    public var startPoint: CGPoint {
+        start
+    }
+
+
+    public var startHeading: Angle {
+        negativeDirection
+            ? Angle(degrees: startAngle.degrees - 90)
+            : Angle(degrees: startAngle.degrees + 90)
+    }
+
     public var endPoint: CGPoint? {
         end
     }

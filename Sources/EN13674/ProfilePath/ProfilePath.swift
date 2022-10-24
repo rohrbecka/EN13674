@@ -238,7 +238,8 @@ extension Array where Element == PathElement {
     }
 
 
-
+// TODO: shorten the function
+// swiftlint:disable function_body_length
     func appending(_ arc: Arc, with connectingElement: ConnectingElementDescription? = nil) throws -> [PathElement] {
         var result = self
         if let center = arc.center,
@@ -307,6 +308,40 @@ extension Array where Element == PathElement {
                                              end: start.point,
                                              negativeDirection: arc.negativeDirection))
                 }
+            }
+        } else if let last = last as? ArcElement, // This is working only for same direction arcs!
+                  let centerY = arc.centerY,
+                  connectingElement == nil {
+            let parallelArc = ArcElement(center: last.center,
+                                         radius: last.radius - arc.radius,
+                                         startAngle: last.startAngle,
+                                         endAngle: last.endAngle,
+                                         negativeDirection: last.negativeDirection)
+            let horizontalAtY = LineElement(start: CGPoint(x: 0.0, y: centerY), end: CGPoint(x: 10.0, y: centerY))
+            do {
+                let potentialNewArcCenters = try GeometricCalculations.intersections(parallelArc, horizontalAtY).sorted {
+                    let arcLength0 = last.angularLength(to: $0.point)
+                    let arcLength1 = last.angularLength(to: $1.point)
+                    return abs(arcLength0.degrees) < abs(arcLength1.degrees)
+                }
+                if let center = potentialNewArcCenters.first?.point {
+                    let newIntersectionAngle = GeometricCalculations.angle(of: center, inRespectTo: last.center)
+                    result = result.dropLast()
+                    result.append(ArcElement(center: last.center,
+                                             radius: last.radius,
+                                             startAngle: last.startAngle,
+                                             endAngle: newIntersectionAngle,
+                                             negativeDirection: last.negativeDirection))
+                    result.append(ArcElement(center: center,
+                                             radius: arc.radius,
+                                             startAngle: newIntersectionAngle,
+                                             endAngle: newIntersectionAngle,
+                                             negativeDirection: arc.negativeDirection))
+                } else {
+                    throw ProfilePathError.elementNotAppended
+                }
+            } catch {
+                throw ProfilePathError.elementNotAppended
             }
         } else {
             throw ProfilePathError.elementNotAppended

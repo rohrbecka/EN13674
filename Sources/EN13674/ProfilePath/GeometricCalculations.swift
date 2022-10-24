@@ -186,7 +186,7 @@ internal enum GeometricCalculations {
     /// - Returns: The change of heading from `line0`to `line1` given in degrees from
     ///             -180° (excluded) to 180° (included).
     internal static func angle(between line0: LineElement, and line1: LineElement) -> Angle {
-        Angle(degrees: (line1.heading - line0.heading))
+        line1.heading - line0.heading
     }
 
 
@@ -256,8 +256,8 @@ internal enum GeometricCalculations {
             arc.angularLength(to: $0.point).rad < arc.angularLength(to: $1.point).rad
         })
         if let filletCenter = intersections.first?.point {
-            let startAngle = LineElement(start: arc.center, end: filletCenter).heading * Double.pi / 180.0
-            let start = filletCenter + CGPoint(x: radius * cos(startAngle), y: radius * sin(startAngle))
+            let startAngle = LineElement(start: arc.center, end: filletCenter).heading.rad
+            let start = filletCenter + CGPoint(x: radius * cos(Double(startAngle)), y: radius * sin(Double(startAngle)))
             if let end = try? intersection(line, perpendicular(to: line, through: filletCenter)) {
                 return ArcElement(center: filletCenter,
                                   radius: radius,
@@ -280,9 +280,9 @@ internal enum GeometricCalculations {
         }
         let radiusHeading = LineElement(start: circle.center, end: point).heading
         if negativeDirection {
-            return (-(line.heading - (radiusHeading - 90))).normalised(0..<360.0)
+            return (-(line.heading.degrees - (radiusHeading.degrees - 90))).normalised(0..<360.0)
         } else {
-            return (line.heading - (radiusHeading + 90)).normalised(0..<360.0)
+            return (line.heading.degrees - (radiusHeading.degrees + 90)).normalised(0..<360.0)
         }
     }
 

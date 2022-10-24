@@ -10,6 +10,12 @@ import Foundation
 
 /// An element of a ``Path``.
 protocol PathElement {
+    /// The startpoint of the ``PathElement`
+    var startPoint: CGPoint { get }
+
+
+    var startHeading: Angle { get }
+
     /// The endpoint of the path element.
     ///
     /// Some Path Elements have an open end (as RayElements). These need another ``PathElement`` to define their

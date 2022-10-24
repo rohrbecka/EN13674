@@ -48,6 +48,15 @@ public struct LineElement {
 
 
 extension LineElement: PathElement {
+    public var startPoint: CGPoint {
+        return start
+    }
+
+
+    public var startHeading: Angle {
+        endHeading
+    }
+
     public var endPoint: CGPoint? {
         guard isEndValidEndPoint else {
             return nil
@@ -109,20 +118,18 @@ extension LineElement {
     /// The direction of this ``StraightLine`` in degrees from 0° to 360° (excluded)
     ///
     /// 0° is defined along the x-axis, turning lieft is positive (y axis is 90°).
-    var heading: Double {
+    var heading: Angle {
         if dx == 0 {
             if dy > 0 {
-                return 90.0
+                return Angle(degrees: 90.0)
             } else {
-                return 270.0
+                return Angle(degrees: 270.0)
             }
         } else {
-            var angle = atan(dy/dx) * 180.0 / Double.pi
+            var angle = Angle(radians: atan(dy/dx))
             if dx < 0 {
-                angle += 180
-            }
-            while angle < 0 {
-                angle += 360.0
+                // swiftlint:disable:next shorthand_operator
+                angle = angle + Angle(degrees: 180)
             }
             return angle
         }
