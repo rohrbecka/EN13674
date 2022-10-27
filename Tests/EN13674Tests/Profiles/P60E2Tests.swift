@@ -15,9 +15,13 @@ internal final class P60E2Tests: XCTestCase {
 
     let sut = P60E2.profile
 
+
+
     func testThatAllElementsAreTangentiallyConnected() {
         XCTAssertAllElementsTangentiallyConnected(sut.elements, accuracyDegrees: defaultAngleAccuracyDegrees)
     }
+
+
 
     func testPathUpperLeft() {
         let sut = self.sut.elements

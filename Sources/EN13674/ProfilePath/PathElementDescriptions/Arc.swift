@@ -172,6 +172,7 @@ struct Arc: PathElementDescription {
     var isCompletelyDefined: Bool {
         center != nil && start != nil && end != nil
         || center != nil && fromX != nil && end != nil
+        || center != nil
     }
 
 

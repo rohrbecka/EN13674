@@ -243,8 +243,8 @@ extension Array where Element == PathElement {
     func appending(_ arc: Arc, with connectingElement: ConnectingElementDescription? = nil) throws -> [PathElement] {
         var result = self
         if let center = arc.center,
-            let start = arc.start,
-            let toX = arc.toX {
+           let start = arc.start,
+           let toX = arc.toX {
             let end = Arc.endPoint(center: center,
                                    radius: arc.radius,
                                    start: start,
@@ -254,6 +254,12 @@ extension Array where Element == PathElement {
                                      radius: arc.radius,
                                      start: start,
                                      end: end,
+                                     negativeDirection: arc.negativeDirection))
+        } else if let center = arc.center, last == nil {
+            result.append(ArcElement(center: center,
+                                     radius: arc.radius,
+                                     startAngle: Angle(degrees: 0),
+                                     endAngle: Angle(degrees: 0),
                                      negativeDirection: arc.negativeDirection))
         } else if let last = last,
                   let toX = arc.toX,
@@ -319,11 +325,12 @@ extension Array where Element == PathElement {
                                          negativeDirection: last.negativeDirection)
             let horizontalAtY = LineElement(start: CGPoint(x: 0.0, y: centerY), end: CGPoint(x: 10.0, y: centerY))
             do {
-                let potentialNewArcCenters = try GeometricCalculations.intersections(parallelArc, horizontalAtY).sorted {
-                    let arcLength0 = last.angularLength(to: $0.point)
-                    let arcLength1 = last.angularLength(to: $1.point)
-                    return abs(arcLength0.degrees) < abs(arcLength1.degrees)
-                }
+                let potentialNewArcCenters = try GeometricCalculations.intersections(parallelArc, horizontalAtY)
+                    .sorted {
+                        let arcLength0 = last.angularLength(to: $0.point)
+                        let arcLength1 = last.angularLength(to: $1.point)
+                        return abs(arcLength0.degrees) < abs(arcLength1.degrees)
+                    }
                 if let center = potentialNewArcCenters.first?.point {
                     let newIntersectionAngle = GeometricCalculations.angle(of: center, inRespectTo: last.center)
                     result = result.dropLast()
@@ -343,6 +350,10 @@ extension Array where Element == PathElement {
             } catch {
                 throw ProfilePathError.elementNotAppended
             }
+//        } else if let last = last as? ArcElement,
+//                  let center = center,
+//                  connectingElement == nil {
+//            let parallelArc = ArcElement(center: last.center)
         } else {
             throw ProfilePathError.elementNotAppended
         }
