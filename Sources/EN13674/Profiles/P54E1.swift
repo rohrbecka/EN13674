@@ -20,7 +20,7 @@ internal struct P54E1: RailProfile {
     }
 
 
-    
+
     internal static var profile = Path {
         Arc(center: (0, -300), from: (0, 0), toX: -20.024/2.0, .counterclockwise)
         Arc(radius: 80, toX: -49.727/2.0, .counterclockwise)
