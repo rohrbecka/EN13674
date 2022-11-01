@@ -33,7 +33,7 @@ internal enum GeometricCalculations {
         } else if line1.isVertical {
             intersectionPoint = CGPoint(x: line1.start.x, y: line0.y(atX: line1.start.x))
         } else { // both lines are not vertical, use equation to find result
-            // TODO: The following is a problem in cases, where m is near to inf (the light is nearly vertical)
+            // TODO: The following is a problem in cases, where m is near to inf (the line is nearly vertical)
             // in these cases, both ∆b is divided by infinity, which results in weird values for x-
             let x = (line1.b - line0.b) / (line0.m - line1.m)
             let y = line0.y(atX: x)

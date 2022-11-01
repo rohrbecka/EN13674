@@ -133,7 +133,6 @@ internal enum Sampler {
     }
 
 
-    // TODO: move to GeometricCalculations
     /// Returns the angle of the given `point` in respect to the `center` point.
     ///
     /// - Parameters:
