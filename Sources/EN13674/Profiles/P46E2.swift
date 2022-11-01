@@ -14,8 +14,8 @@ internal struct P46E2: RailProfile {
 
 
 
-    public func profile(resolution: Double) -> [CGPoint] {
-        return P46E2.profile.profile(resolution: resolution)
+    public var legacyDescription: String? {
+        "U33"
     }
 
 

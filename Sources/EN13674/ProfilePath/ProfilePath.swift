@@ -350,10 +350,6 @@ extension Array where Element == PathElement {
             } catch {
                 throw ProfilePathError.elementNotAppended
             }
-//        } else if let last = last as? ArcElement,
-//                  let center = center,
-//                  connectingElement == nil {
-//            let parallelArc = ArcElement(center: last.center)
         } else {
             throw ProfilePathError.elementNotAppended
         }

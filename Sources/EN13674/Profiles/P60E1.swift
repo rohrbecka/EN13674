@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 internal struct P60E1: RailProfile {
     public var description: String {
         "EN 13674 – 60E1"
@@ -15,8 +14,8 @@ internal struct P60E1: RailProfile {
 
 
 
-    public func profile(resolution: Double) -> [CGPoint] {
-        return P60E1.profile.profile(resolution: resolution)
+    public var legacyDescription: String? {
+        "UIC 60"
     }
 
 

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 internal struct P56E1: RailProfile {
     public var description: String {
         "EN 13674 – 56E1"
@@ -15,8 +14,8 @@ internal struct P56E1: RailProfile {
 
 
 
-    public func profile(resolution: Double) -> [CGPoint] {
-        return P56E1.profile.profile(resolution: resolution)
+    public var legacyDescription: String? {
+        "BS 113lb BR Variant"
     }
 
 
@@ -54,5 +53,4 @@ internal struct P56E1: RailProfile {
         Arc(radius: 80, fromX: 51.235/2.0, .counterclockwise)
         Arc(radius: 305, center: (0, -305), fromX: 11.787/2.0, to: (0, 0), .counterclockwise)
     }
-
 }

@@ -7,16 +7,15 @@
 
 import Foundation
 
-
 internal struct P60E2: RailProfile {
     public var description: String {
         "EN 13674 – 60E2"
     }
 
 
-// TODO: move this function to the protocol and remove from EVERY profile definition
-    public func profile(resolution: Double) -> [CGPoint] {
-        return P60E2.profile.profile(resolution: resolution)
+
+    public var legacyDescription: String? {
+        return nil
     }
 
 

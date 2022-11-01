@@ -14,10 +14,25 @@ public protocol RailProfile: CustomStringConvertible {
     var description: String { get }
 
 
-    /// Returns the profile as array of x-y-values with optimal resolution.
+    /// Before the release of EN 13674 the rail profiles had either "national" names or
+    /// UIC-names, which are still used in several areas to refer to the profile. Therefore
+    /// these names are available as `legacyDescription`. They correspond to
+    /// Table A.1 in EN 13674-1:2017-07.
     ///
-    /// - Returns: An array of ``CGPoint``s representing the profile.
-    func profile() -> [CGPoint]
+    /// Shall return `nil` if there is no legacy description.
+    var legacyDescription: String? { get }
+
+
+    static var profile: Path { get }
+}
+
+
+
+extension RailProfile {
+    func profile() -> [CGPoint] {
+        profile(resolution: 0.5)
+    }
+
 
 
     /// Returns the profile as array of x-y-values.
@@ -26,13 +41,7 @@ public protocol RailProfile: CustomStringConvertible {
     ///
     /// - Parameter resolution: The maximum allowed distance between two neighbouring points.
     /// - Returns: An array o f``CGPoint``s representing the profile.
-    func profile(resolution: Double) -> [CGPoint]
-}
-
-
-
-extension RailProfile {
-    func profile() -> [CGPoint] {
-        profile(resolution: 0.5)
+    public func profile(resolution: Double) -> [CGPoint] {
+        return Self.profile.profile(resolution: resolution)
     }
 }

@@ -14,8 +14,8 @@ internal struct P46E3: RailProfile {
 
 
 
-    public func profile(resolution: Double) -> [CGPoint] {
-        return P46E3.profile.profile(resolution: resolution)
+    public var legacyDescription: String? {
+        "NP 46"
     }
 
 
@@ -53,5 +53,4 @@ internal struct P46E3: RailProfile {
         Arc(radius: 80, fromX: 53.761/2.0, .counterclockwise)
         Arc(radius: 300, center: (0, -300), fromX: 23.015/2.0, to: (0, 0), .counterclockwise)
     }
-
 }
