@@ -26,7 +26,6 @@ let package = Package(
             plugins: [.plugin(name: "SwiftLintPlugin", package: "SwiftLint")]),
         .testTarget(
             name: "EN13674Tests",
-            dependencies: ["EN13674"],
-            plugins: [.plugin(name: "SwiftLintPlugin", package: "SwiftLint")])
+            dependencies: ["EN13674"])
     ]
 )

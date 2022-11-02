@@ -53,6 +53,6 @@ internal struct P50E5: RailProfile {
         Fillet(radius: 2)
         Line(Angle(dx: -1, dy: 16))
         Arc(radius: 14, fromHeading: Angle(dx: -1, dy: 16), .counterclockwise)
-        Arc(radius: 400, center: (0, -400), fromX: 40.471/2.0, to: (0, 0), .counterclockwise)
+        Arc(center: (0, -400), fromX: 40.471/2.0, to: (0, 0), .counterclockwise)
     }
 }

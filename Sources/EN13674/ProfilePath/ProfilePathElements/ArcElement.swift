@@ -39,6 +39,7 @@ internal struct ArcElement: Equatable {
 
 
 
+    /// Creates an ``Arc`` giving it's center, radius and the start and end angle.
     public init(center: CGPoint, radius: CGFloat, startAngle: Angle, endAngle: Angle, negativeDirection: Bool = false) {
         self.center = center
         self.radius = radius
@@ -48,7 +49,8 @@ internal struct ArcElement: Equatable {
     }
 
 
-
+    /// Creates an ``Arc``giving it's center, radius and a start and end point. The start and end points
+    /// are not necessarily on the arc themselves. They only define the start and end angle.
     public init(center: CGPoint, radius: CGFloat, start: CGPoint, end: CGPoint,
                 negativeDirection: Bool = false) {
         self.center = center
@@ -59,7 +61,9 @@ internal struct ArcElement: Equatable {
     }
 
 
-
+    /// The reversed Arc,which is obtained by swapping the start and end angle as well as the
+    /// inverting the direction. The final arc is thus identical to the initial arc. The path is only traversed
+    /// in the other direction.
     var reversed: Self {
         ArcElement(center: center,
                    radius: radius,

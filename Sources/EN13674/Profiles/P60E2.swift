@@ -61,7 +61,7 @@ internal struct P60E2: RailProfile {
         Arc(radius: 8, fromHeading: Angle(dx: -1.0, dy: 20), .counterclockwise)
         Arc(radius: 16, fromX: 70.774/2.0, .counterclockwise)
         Arc(radius: 70, fromX: 48.913/2.0, .counterclockwise)
-        Arc(radius: 200, center: (0, -200), fromX: 23.778/2.0, to: (0, 0), .counterclockwise)
+        Arc(center: (0, -200), fromX: 23.778/2.0, to: (0, 0), .counterclockwise)
     }
 
 }

@@ -49,6 +49,6 @@ internal struct P46E4: RailProfile {
         Fillet(radius: 1)
         Line(Angle(dx: -1, dy: 20))
         Arc(radius: 14, fromHeading: Angle(dx: -1, dy: 20), .counterclockwise)
-        Arc(radius: 400, center: (0, -400), fromX: 38.378/2.0, to: (0, 0), .counterclockwise)
+        Arc(center: (0, -400), fromX: 38.378/2.0, to: (0, 0), .counterclockwise)
     }
 }

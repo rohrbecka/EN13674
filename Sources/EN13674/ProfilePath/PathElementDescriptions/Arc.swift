@@ -9,7 +9,7 @@ import Foundation
 
 /// The description of an Arc within a `Path` description.
 ///
-/// The arc description may consist of several boudary conditions. Where an arc can be uniquely described
+/// The arc description may consist of several boundary conditions. Where an arc can be uniquely described
 /// by a start end end angle, a direction and a radius, it may be good enough to give less information.
 /// ``Arc`` allows a client to do so, and relies on the ``PathBuilder`` to generate the path out of it.
 /// Therefore, an ``Arc`` description can't be 'incomplete' only within the context given by the other Path elements
@@ -91,34 +91,33 @@ struct Arc: PathElementDescription {
     }
 
 
-    init(radius: CGFloat,
-         center: (CGFloat, CGFloat),
+    init(center: (CGFloat, CGFloat),
          fromX: CGFloat,
          to end: (CGFloat, CGFloat),
          _ direction: Direction) {
-        self.radius = radius
-        self.center = CGPoint(x: center.0, y: center.1)
+        self.radius = CGPoint(center).distance(to: CGPoint(end))
+        self.center = CGPoint(center)
         self.fromX = fromX
         self.end = CGPoint(x: end.0, y: end.1)
         self.negativeDirection = direction == .clockwise
     }
 
 
-    init(radius: Double, centerY: Double, _ direction: Direction) {
+    init(radius: CGFloat, centerY: Double, _ direction: Direction) {
         self.radius = radius
         self.negativeDirection = direction == .clockwise
         self.centerY = centerY
     }
 
 
-    init(radius: Double, _ direction: Direction, to endAngle: Angle) {
+    init(radius: CGFloat, _ direction: Direction, to endAngle: Angle) {
         self.radius = radius
         self.negativeDirection = direction == .clockwise
         self.endAngle = endAngle
     }
 
 
-    init(radius: Double, fromHeading: Angle, _ direction: Direction) {
+    init(radius: CGFloat, fromHeading: Angle, _ direction: Direction) {
         self.radius = radius
         self.negativeDirection = direction == .clockwise
         self.startAngle = negativeDirection
@@ -127,7 +126,7 @@ struct Arc: PathElementDescription {
     }
 
 
-    init(radius: Double, _ direction: Direction, toHeading: Angle) {
+    init(radius: CGFloat, _ direction: Direction, toHeading: Angle) {
         self.radius = radius
         self.negativeDirection = direction == .clockwise
         self.endAngle = negativeDirection
@@ -137,7 +136,7 @@ struct Arc: PathElementDescription {
 
 
 
-    init(radius: Double, center: (Double, Double), _ direction: Direction) {
+    init(radius: CGFloat, center: (CGFloat, CGFloat), _ direction: Direction) {
         self.radius = radius
         self.negativeDirection = direction == .clockwise
         self.center = CGPoint(x: center.0, y: center.1)
@@ -170,9 +169,8 @@ struct Arc: PathElementDescription {
 
 
     var isCompletelyDefined: Bool {
-        center != nil && start != nil && end != nil
-        || center != nil && fromX != nil && end != nil
-        || center != nil
+        // the radius of the arc as well as the direction is always defined!
+        center != nil
     }
 
 
