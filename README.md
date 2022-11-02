@@ -15,7 +15,7 @@ physical properties and the homologation process for such rails.
 To use the package just include it as a package dependency into your project.
 Check the repository to find the most recent release.
 
-The project follows the semantic versioning rules as outlined in (semver.org)[https://semver.org].
+The project follows the semantic versioning rules as outlined in [semver.org](https://semver.org).
 Therefore, it should be safe to use the "Up to next major version"-rule.
 
 ## API
