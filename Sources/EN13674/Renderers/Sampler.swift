@@ -46,7 +46,7 @@ internal enum Sampler {
     /// The portion of the arc to be sampled is determined by the angle of the `start` and the `end`
     /// point in respect to the `center`.
     /// It is not checked whether `start` and `end` are located exactly on the circle defined by `center` and
-    /// `radius`. Onyl the angle is used and `end` is used as the final point in the returned `Array`.
+    /// `radius`. Only the angle is used and `end` is used as the final point in the returned `Array`.
     ///
     /// - Parameters:
     ///   - start: The starting point, which will *not* be included in the returned `Array`.

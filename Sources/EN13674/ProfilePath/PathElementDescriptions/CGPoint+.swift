@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 extension CGPoint {
 
@@ -71,5 +72,14 @@ extension CGPoint {
         let ydist = otherPoint.y - y
         let xdist = otherPoint.x - x
         return sqrt(xdist * xdist + ydist * ydist)
+    }
+}
+
+
+
+extension CGPoint: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(x)
+        hasher.combine(y)
     }
 }
