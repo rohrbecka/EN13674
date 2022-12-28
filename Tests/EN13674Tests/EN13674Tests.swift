@@ -3,7 +3,7 @@ import XCTest
 
 final class EN13674Tests: XCTestCase {
     func testExample() throws {
-        let profile = EN13674.profile(.p54E1)
+        let profile = EN13674.profile(.p30E1)
         let points = profile.profile()
 
         let formatter = NumberFormatter()

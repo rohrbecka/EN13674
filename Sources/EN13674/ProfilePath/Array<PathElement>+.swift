@@ -252,6 +252,23 @@ extension Array where Element == PathElement {
                 }
             }
             return result
+        } else if let center = arc.center, let connectingElement {
+            var result = self
+            let startAngle = arc.negativeDirection ? Angle(degrees: 1) : Angle(degrees: 0)
+            let endAngle = arc.negativeDirection ? Angle(degrees: 0) : Angle(degrees: 1)
+            let testArc = ArcElement(center: center,
+                                     radius: arc.radius,
+                                     startAngle: startAngle,
+                                     endAngle: endAngle,
+                                     negativeDirection: arc.negativeDirection)
+            let connection = connection(line, connectingElement, testArc)
+            if !connection.isEmpty {
+                result.removeLast()
+                result.append(contentsOf: connection)
+                return result
+            } else {
+                throw ProfilePathError.elementNotAppended
+            }
         } else {
             throw ProfilePathError.elementNotAppended
         }
