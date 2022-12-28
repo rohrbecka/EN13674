@@ -23,7 +23,7 @@ public struct Path {
             if let line = element as? LineElement {
                 result += Sampler.straightLine(from: line.start, to: line.end, resolution: resolution)
             } else if let arc = element as? ArcElement {
-                result += Sampler.arc(from: arc .start,
+                result += Sampler.arc(from: arc.start,
                                       to: arc.end,
                                       center: arc.center,
                                       radius: arc.radius,
