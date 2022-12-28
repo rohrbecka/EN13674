@@ -43,7 +43,7 @@ internal struct P30E2: RailProfile {
         Fillet(radius: 4.0)
         Line(from: (109.54/2, -114.3+7.54), Angle(dx: -6, dy: 1))
         Fillet(radius: 13.0)
-        Line(Angle(dx: -2.75, dy: 1), to: (0, -109.54+22.22))
+        Line(Angle(dx: -2.75, dy: 1), to: (0, -114.3+22.22))
         Fillet(radius: 9.5)
         Arc(radius: 508, center: (508.0+11.11/2.0, -114.3+56.36), .clockwise)
         Arc(radius: 22.22, centerY: -114.3 + 56.36 + 13.49, .clockwise)

@@ -44,7 +44,7 @@ internal struct P41E1: RailProfile {
         Fillet(radius: 3)
         Line(from: (62.5, -138+9.48), Angle(dx: -11.32, dy: 1))
         Fillet(radius: 40.0)
-        Line(Angle(dx: -3, dy: -1), to: (0, -138+24))
+        Line(Angle(dx: -3, dy: 1), to: (0, -138+24))
         Fillet(radius: 6.0)
         Arc(radius: 140, centerY: -138+48.5, .clockwise)
         Line(from: (6, -138+48.5), to: (6, -138 + 48.5+30))
