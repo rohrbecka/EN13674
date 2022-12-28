@@ -34,7 +34,7 @@ internal struct P35E1: RailProfile {
         Fillet(radius: 5.0)
         Line(from: (0, -100), Angle(dx: -2.5, dy: -1))
         Fillet(radius: 10.0)
-        Line(Angle(dx: -5, dy: -1), to: (-55, 8))
+        Line(Angle(dx: -5, dy: -1), to: (-55, -125+8))
         Fillet(radius: 4.0)
         Line(from: (-55.0, -125+8), to: (-55, -125))
         Line(to: (55.0, -125))
