@@ -1,10 +1,11 @@
 # EN13674
 
-A Swift Package implementing the rail profiles as defined in EN 13674-1:2017.
+A Swift Package implementing the rail profiles as defined in EN 13674-1:2017 and EN 13674-4:2020.
 
 ## About the standard
 
 The EN 13674-1:2017 defines Vignol-shaped rails with meter-weights of 46 kg and above.
+The EN 13674-4:2020 defines Vignol-shaped rails with meter-weights of less than 46 kg.
 This includes not only the shape of the rail profiles, but also the requirements regarding
 physical properties and the homologation process for such rails.
 
@@ -33,4 +34,4 @@ The available ``RailProfileType``s can be found in the respective documentation.
 This `enum` contains the profiles as defined in EN 13674 (prefixed with a 'p').
 
 Additionally the legacy names of the profiles as defined in table A.1 of EN 13674-1
-also these ``RailProfileType``s are available.
+and table A.1 of EN 13674-4 are available as ``RailProfileType``s.
