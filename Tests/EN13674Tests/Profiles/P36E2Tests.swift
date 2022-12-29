@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import EN13674
+@testable import ProfilePath
 
 internal final class P36E2Tests: XCTestCase {
 

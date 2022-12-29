@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import ProfilePath
 
-/// The XXX rail profile according to appendix A, picture A.6 of EN 13674-4:2020.
+/// The 36E1 rail profile according to appendix A, picture A.6 of EN 13674-4:2020.
 internal struct P36E1: RailProfile {
     public var description: String {
         "EN 13674-4 – 36E1"

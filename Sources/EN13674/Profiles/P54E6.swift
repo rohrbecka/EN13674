@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ProfilePath
 
 internal struct P54E6: RailProfile {
     public var description: String {

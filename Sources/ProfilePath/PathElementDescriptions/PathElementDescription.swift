@@ -8,7 +8,7 @@
 import Foundation
 
 /// The basic building block to build a ``Path``.
-protocol PathElementDescription {
+public protocol PathElementDescription {
 
     /// Returns `true` if the element is completely defined and can be drawn.
     var isCompletelyDefined: Bool { get }

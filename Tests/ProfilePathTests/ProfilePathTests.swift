@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import EN13674
+@testable import ProfilePath
 
 final class ProfilePathTests: XCTestCase {
 

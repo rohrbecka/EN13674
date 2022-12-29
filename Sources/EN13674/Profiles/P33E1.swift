@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ProfilePath
 
 /// The P33E1 rail profile according to appendix A, picture A.4 of EN 13674-4:2020.
 internal struct P33E1: RailProfile {

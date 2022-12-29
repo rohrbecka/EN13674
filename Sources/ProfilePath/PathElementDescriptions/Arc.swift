@@ -14,7 +14,7 @@ import Foundation
 /// ``Arc`` allows a client to do so, and relies on the ``PathBuilder`` to generate the path out of it.
 /// Therefore, an ``Arc`` description can't be 'incomplete' only within the context given by the other Path elements
 /// it may be insufficient to be uniquely defined, which may prevent rendering.
-struct Arc: PathElementDescription {
+public struct Arc: PathElementDescription {
 
     /// The radius of the arc, which must be given.
     var radius: CGFloat
@@ -52,7 +52,7 @@ struct Arc: PathElementDescription {
     ///   - start: The starting point
     ///   - endX: The x-coordinate of the ending point
     ///   - direction: The direction in which the arc is drawn.
-    init(center: (CGFloat, CGFloat),
+    public init(center: (CGFloat, CGFloat),
          from start: (CGFloat, CGFloat),
          toX endX: CGFloat,
          _ direction: Direction) {
@@ -68,7 +68,7 @@ struct Arc: PathElementDescription {
     /// Creates an Arc with a given radius going in the given `direction` until the given X-coordinate.
     /// For this to work there must be a previous element with a given end point and end directon. The
     /// new Arc will attach tangentially to the previous path element.
-    init(radius: CGFloat,
+    public init(radius: CGFloat,
          toX endX: CGFloat,
          _ direction: Direction) {
         self.radius = radius
@@ -77,21 +77,21 @@ struct Arc: PathElementDescription {
     }
 
 
-    init(radius: CGFloat, _ direction: Direction) {
+    public init(radius: CGFloat, _ direction: Direction) {
         self.radius = radius
         self.negativeDirection = direction == .clockwise
     }
 
 
 
-    init(radius: CGFloat, fromX: CGFloat, _ direction: Direction) {
+    public init(radius: CGFloat, fromX: CGFloat, _ direction: Direction) {
         self.radius = radius
         self.fromX = fromX
         self.negativeDirection = direction == .clockwise
     }
 
 
-    init(center: (CGFloat, CGFloat),
+    public init(center: (CGFloat, CGFloat),
          fromX: CGFloat,
          to end: (CGFloat, CGFloat),
          _ direction: Direction) {
@@ -103,21 +103,21 @@ struct Arc: PathElementDescription {
     }
 
 
-    init(radius: CGFloat, centerY: Double, _ direction: Direction) {
+    public init(radius: CGFloat, centerY: Double, _ direction: Direction) {
         self.radius = radius
         self.negativeDirection = direction == .clockwise
         self.centerY = centerY
     }
 
 
-    init(radius: CGFloat, _ direction: Direction, to endAngle: Angle) {
+    public init(radius: CGFloat, _ direction: Direction, to endAngle: Angle) {
         self.radius = radius
         self.negativeDirection = direction == .clockwise
         self.endAngle = endAngle
     }
 
 
-    init(radius: CGFloat, fromHeading: Angle, _ direction: Direction) {
+    public init(radius: CGFloat, fromHeading: Angle, _ direction: Direction) {
         self.radius = radius
         self.negativeDirection = direction == .clockwise
         self.startAngle = negativeDirection
@@ -126,7 +126,7 @@ struct Arc: PathElementDescription {
     }
 
 
-    init(radius: CGFloat, _ direction: Direction, toHeading: Angle) {
+    public init(radius: CGFloat, _ direction: Direction, toHeading: Angle) {
         self.radius = radius
         self.negativeDirection = direction == .clockwise
         self.endAngle = negativeDirection
@@ -136,7 +136,7 @@ struct Arc: PathElementDescription {
 
 
 
-    init(radius: CGFloat, center: (CGFloat, CGFloat), _ direction: Direction) {
+    public init(radius: CGFloat, center: (CGFloat, CGFloat), _ direction: Direction) {
         self.radius = radius
         self.negativeDirection = direction == .clockwise
         self.center = CGPoint(x: center.0, y: center.1)
@@ -144,7 +144,7 @@ struct Arc: PathElementDescription {
 
 
 
-    static func endPoint(center: CGPoint,
+    public static func endPoint(center: CGPoint,
                          radius: CGFloat,
                          start: CGPoint,
                          toX: CGFloat,
@@ -168,7 +168,7 @@ struct Arc: PathElementDescription {
 
 
 
-    var isCompletelyDefined: Bool {
+    public var isCompletelyDefined: Bool {
         // the radius of the arc as well as the direction is always defined!
         center != nil
     }
@@ -197,7 +197,7 @@ struct Arc: PathElementDescription {
     }
 
 
-    var reversed: PathElementDescription {
+    public var reversed: PathElementDescription {
         return Arc(radius: radius,
                    center: center,
                    startAngle: endAngle,

@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import EN13674
+import ProfilePath
 
 internal final class CGPointTests: XCTestCase {
     internal func testInitialisationBasedOnTuple() {

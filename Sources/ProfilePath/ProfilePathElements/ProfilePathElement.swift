@@ -9,7 +9,7 @@ import Foundation
 
 
 /// An element of a ``Path``.
-protocol PathElement {
+public protocol PathElement {
     /// The startpoint of the ``PathElement`
     var startPoint: CGPoint { get }
 

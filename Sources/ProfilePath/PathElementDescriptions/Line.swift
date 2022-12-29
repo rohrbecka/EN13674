@@ -16,21 +16,21 @@ import Foundation
 /// ``Line`` is therefore relying on ``PathBuilder`` tp generate a path out of it.
 /// Therefore, a ``Line`` description can't be 'incomplete' only within the context given by the other Path elements
 /// it may be insufficient to be uniquely defined, which may prevent rendering.
-struct Line: PathElementDescription {
+public struct Line: PathElementDescription {
 
     /// The starting point.
-    var start: CGPoint?
+    public var start: CGPoint?
 
     /// The end point.
-    var end: CGPoint?
+    public var end: CGPoint?
 
     /// The direction of the line
-    var heading: Angle?
+    public var heading: Angle?
 
     /// Creates a new ``Line``.
     /// - Parameter from: The starting point.
     /// - Parameter to: The end point.
-    init (from: (CGFloat, CGFloat)? = nil, to end: (CGFloat, CGFloat)? = nil) {
+    public init (from: (CGFloat, CGFloat)? = nil, to end: (CGFloat, CGFloat)? = nil) {
         if let from {
             self.start = CGPoint(x: from.0, y: from.1)
         }
@@ -47,25 +47,25 @@ struct Line: PathElementDescription {
     }
 
 
-    init(_ heading: Angle) {
+    public init(_ heading: Angle) {
         self.heading = heading
     }
 
 
 
-    init(_ heading: Angle, to end: (CGFloat, CGFloat)) {
+    public init(_ heading: Angle, to end: (CGFloat, CGFloat)) {
         self.heading = heading
         self.end = CGPoint(x: end.0, y: end.1)
     }
 
 
-    init(from: (CGFloat, CGFloat), _ heading: Angle) {
+    public init(from: (CGFloat, CGFloat), _ heading: Angle) {
         self.start = CGPoint(x: from.0, y: from.1)
         self.heading = heading
     }
 
 
-    var isCompletelyDefined: Bool {
+    public var isCompletelyDefined: Bool {
         start != nil && end != nil
     }
 
@@ -78,7 +78,7 @@ struct Line: PathElementDescription {
     }
 
 
-    var reversed: PathElementDescription {
+    public var reversed: PathElementDescription {
         Line(from: end, to: start, heading: inverseHeading)
     }
 }

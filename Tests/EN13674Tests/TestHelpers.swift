@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import EN13674
+import ProfilePath
 
 
 internal func XCTAssertEqual(_ point1: CGPoint?,

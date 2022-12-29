@@ -8,24 +8,24 @@
 import Foundation
 
 /// Describes a ``PathElement`` connecting two intersecting lines with a radius.
-struct Fillet: ConnectingElementDescription {
+public struct Fillet: ConnectingElementDescription {
     // The radius of the fillet.
-    var radius: CGFloat
+    public var radius: CGFloat
 
     /// Creates a ``Fillet`` with a given `radius`.
     ///
     /// - Parameter radius: The radius of the fillet.
-    init(radius: CGFloat) {
+    public init(radius: CGFloat) {
         self.radius = radius
     }
 
 
-    var isCompletelyDefined: Bool {
+    public var isCompletelyDefined: Bool {
         false
     }
 
 
-    var reversed: PathElementDescription {
+    public var reversed: PathElementDescription {
         self
     }
 }

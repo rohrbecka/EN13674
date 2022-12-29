@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import ProfilePath
 
 
 struct TalgoRodalECx: RailProfile {

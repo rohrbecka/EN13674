@@ -70,7 +70,7 @@ extension LineElement: PathElement {
     }
 
 
-    internal var reversed: Self {
+    public var reversed: Self {
         LineElement(start: end, end: start)
     }
 }

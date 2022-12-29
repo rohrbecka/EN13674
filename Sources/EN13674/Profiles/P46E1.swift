@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ProfilePath
 
 /// The 46E1 rail profile according to appendix A, picture A.1 of EN 13674-1:2017.
 internal struct P46E1: RailProfile {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ProfilePath
 
 /// A railway rail profile
 public protocol RailProfile: CustomStringConvertible {

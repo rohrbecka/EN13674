@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import EN13674
+@testable import ProfilePath
 
 let defaultAngleAccuracyDegrees = 0.001
 let defaultAccuracy = 0.00001

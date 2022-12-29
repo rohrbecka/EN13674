@@ -9,10 +9,10 @@ import Foundation
 
 /// The description of a profile by path elements
 public struct Path {
-    internal var elements: [PathElement]
+    public var elements: [PathElement]
 
 
-    init(@PathBuilder _ content: () -> [PathElement]) {
+    public init(@PathBuilder _ content: () -> [PathElement]) {
         self.elements = content()
     }
 
@@ -38,20 +38,20 @@ public struct Path {
 
 
 @resultBuilder
-struct PathBuilder {
+public struct PathBuilder {
 
-    static func buildBlock() -> [PathElement] {
+    public static func buildBlock() -> [PathElement] {
         []
     }
 
 
-    static func buildBlock(_ elements: PathElementDescription...) -> [PathElement] {
+    public static func buildBlock(_ elements: PathElementDescription...) -> [PathElement] {
         buildBlock(elements)
     }
 
 
 
-    static func buildBlock(_ elements: [PathElementDescription]) -> [PathElement] {
+    public static func buildBlock(_ elements: [PathElementDescription]) -> [PathElement] {
         var stackOfUnusedElements = [PathElementDescription]()
         var result = [PathElement]()
         var connectingElement: ConnectingElementDescription?

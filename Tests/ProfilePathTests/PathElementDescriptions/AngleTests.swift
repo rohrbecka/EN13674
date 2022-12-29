@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import EN13674
+import ProfilePath
 
 final class AngleTests: XCTestCase {
 
