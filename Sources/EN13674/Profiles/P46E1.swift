@@ -10,13 +10,13 @@ import Foundation
 /// The 46E1 rail profile according to appendix A, picture A.1 of EN 13674-1:2017.
 internal struct P46E1: RailProfile {
     public var description: String {
-        "EN 13674 - 46E1"
+        "EN 13674-1 – 46E1"
     }
 
 
 
     public var legacyDescription: String? {
-        "SBB I"
+        "SBB I"
     }
 
 

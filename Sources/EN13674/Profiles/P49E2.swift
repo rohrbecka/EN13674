@@ -9,13 +9,13 @@ import Foundation
 
 internal struct P49E2: RailProfile {
     public var description: String {
-        "EN 13674 – 49E2"
+        "EN 13674-1 – 49E2"
     }
 
 
 
     public var legacyDescription: String? {
-        "S49 T"
+        "S49 T"
     }
 
 

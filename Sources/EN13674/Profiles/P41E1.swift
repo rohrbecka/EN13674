@@ -10,13 +10,13 @@ import Foundation
 /// The P41E1 rail profile according to appendix A, picture A.11 of EN 13674-4:2020.
 internal struct P41E1: RailProfile {
     public var description: String {
-        "EN 13674-4 - 41E1"
+        "EN 13674-4 – 41E1"
     }
 
 
 
     public var legacyDescription: String? {
-        "S41 R10"
+        "S41 R10"
     }
 
 

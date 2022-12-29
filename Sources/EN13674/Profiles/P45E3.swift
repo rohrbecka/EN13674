@@ -10,7 +10,7 @@ import Foundation
 /// The 45E3 rail profile according to appendix A, picture A.15 of EN 13674-4:2020.
 internal struct P45E3: RailProfile {
     public var description: String {
-        "EN 13674-4 - 45E3"
+        "EN 13674-4 – 45E3"
     }
 
 

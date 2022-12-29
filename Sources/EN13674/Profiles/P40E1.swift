@@ -10,7 +10,7 @@ import Foundation
 /// The 40E1 rail profile according to appendix A, picture A.10 of EN 13674-4:2020.
 internal struct P40E1: RailProfile {
     public var description: String {
-        "EN 13674-4 - 40E1"
+        "EN 13674-4 – 40E1"
     }
 
 
@@ -45,6 +45,7 @@ internal struct P40E1: RailProfile {
         Line(from: (62.5, -138+9.48), Angle(dx: -11.32, dy: 1))
         Fillet(radius: 40.0)
         Line(Angle(dx: -3, dy: 1), to: (0, -138+24))
+        Fillet(radius: 7)
         Arc(radius: 140.0, centerY: -138+48.5, .clockwise)
         Line(from: (6, -138+48.5), to: (6, -138+48.5+30))
         Arc(radius: 100, centerY: -138+48.5+30, .clockwise)

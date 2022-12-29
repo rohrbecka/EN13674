@@ -254,7 +254,7 @@ extension RailProfileType {
     public var localizedDescription: String {
         let profile = EN13674.profile(self)
         if let legacyDescription = profile.legacyDescription {
-            return "\(profile.description) (\(legacyDescription))"
+            return "\(profile.description) (\(legacyDescription))"
         } else {
             return "\(profile.description)"
         }

@@ -10,13 +10,13 @@ import Foundation
 /// The 30E2 rail profile according to appendix A, picture A.3 of EN 13674-4:2020.
 internal struct P30E2: RailProfile {
     public var description: String {
-        "EN 13674-4 - 30E2"
+        "EN 13674-4 – 30E2"
     }
 
 
 
     public var legacyDescription: String? {
-        "BS 60A"
+        "BS 60A"
     }
 
 

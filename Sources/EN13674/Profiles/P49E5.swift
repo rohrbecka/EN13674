@@ -9,7 +9,7 @@ import Foundation
 
 internal struct P49E5: RailProfile {
     public var description: String {
-        "EN 13674 – 49E5"
+        "EN 13674-1 – 49E5"
     }
 
 
