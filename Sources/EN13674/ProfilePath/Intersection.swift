@@ -13,7 +13,7 @@ import Foundation
 /// ``PathElements`` may intersect at one or more points. At the point where they are intersecting
 /// they form an angle. This angle corresponds to a change in direction when seeing the Path as going
 /// from start to end.
-public struct Intersection {
+internal struct Intersection {
     /// The point where the two ``PathElements`` are intersecting
     public var point: CGPoint
 

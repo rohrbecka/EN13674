@@ -45,7 +45,7 @@ internal struct P45E3: RailProfile {
         Line(from: (0, -40.5), Angle(dx: 4, dy: 1))
         Fillet(radius: 2.0)
         Line()
-        Arc(radius: 13, fromHeading: Angle(degrees: 90.0), .counterclockwise)
+        Arc(radius: 8, fromHeading: Angle(degrees: 90.0), .counterclockwise)
         Arc(center: (0, -305), fromX: 51.347/2.0, to: (0, 0), .counterclockwise)
     }
 }
