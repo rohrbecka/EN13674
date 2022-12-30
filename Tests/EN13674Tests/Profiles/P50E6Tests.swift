@@ -16,7 +16,8 @@ internal final class P50E6Tests: XCTestCase {
 
 
     func testThatAllElementsAreTangentiallyConnected() {
-        XCTAssertAllElementsTangentiallyConnected(sut.elements, accuracyDegrees: defaultAngleAccuracyDegrees)
+        XCTAssertAllElementsTangentiallyConnected(sut.elements, accuracyDegrees: defaultAngleAccuracyDegrees,
+                                                  accuracy: defaultAccuracy)
     }
 
 

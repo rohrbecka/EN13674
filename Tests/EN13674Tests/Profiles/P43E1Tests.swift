@@ -17,11 +17,14 @@ internal final class P43E1Tests: XCTestCase {
 
     func testThatAllElementsAreTangentiallyConnected() {
         XCTAssertAllElementsTangentiallyConnected(Array(sut.elements[0...9]),
-                                                  accuracyDegrees: defaultAngleAccuracyDegrees)
+                                                  accuracyDegrees: defaultAngleAccuracyDegrees,
+                                                  accuracy: defaultAccuracy)
         XCTAssertAllElementsTangentiallyConnected(Array(sut.elements[10...18]),
-                                                  accuracyDegrees: defaultAngleAccuracyDegrees)
+                                                  accuracyDegrees: defaultAngleAccuracyDegrees,
+                                                  accuracy: defaultAccuracy)
         XCTAssertAllElementsTangentiallyConnected(Array(sut.elements[19...28]),
-                                                  accuracyDegrees: defaultAngleAccuracyDegrees)
+                                                  accuracyDegrees: defaultAngleAccuracyDegrees,
+                                                  accuracy: defaultAccuracy)
     }
 
 

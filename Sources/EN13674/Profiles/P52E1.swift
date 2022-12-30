@@ -46,7 +46,7 @@ internal struct P52E1: RailProfile {
         Line(Angle(dx: -2, dy: 1), to: (0, -150+32))
         Fillet(radius: 12)
         Arc(radius: 600, center: (607.5, -150+32+43), .clockwise)
-        Arc(radius: 400, center: (407.5, -150+32+43), .clockwise)
+        Arc(radius: 400, centerY: -150+32+43, .clockwise)
         Fillet(radius: 12)
         Line(from: (0.0, -55), Angle(dx: 2, dy: 1))
         Fillet(radius: 5)

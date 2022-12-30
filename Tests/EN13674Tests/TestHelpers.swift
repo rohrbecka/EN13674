@@ -63,6 +63,7 @@ internal func XCTAssertEqual(_ angle1: Angle?,
 internal func XCTAssertAllElementsTangentiallyConnected(_ pathElements: [PathElement],
                                                         _ message: String = "",
                                                         accuracyDegrees: CGFloat = 0,
+                                                        accuracy: CGFloat = 0,
                                                         file: StaticString = #file,
                                                         line: UInt = #line) {
     guard pathElements.count > 1 else {
@@ -74,6 +75,11 @@ internal func XCTAssertAllElementsTangentiallyConnected(_ pathElements: [PathEle
         XCTAssertEqual(pathElements[index].endHeading,
                        pathElements[index+1].startHeading,
                        accuracyDegrees: accuracyDegrees,
+                       file: file,
+                       line: line)
+        XCTAssertEqual(pathElements[index].endPoint,
+                       (pathElements[index+1].startPoint.x, pathElements[index+1].startPoint.y),
+                       accuracy: accuracy,
                        file: file,
                        line: line)
     }
