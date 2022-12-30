@@ -15,18 +15,12 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/realm/SwiftLint", revision: "8d4ebcc723fb5b8c13bd67227b640f5675943309")
+        .package(url: "https://github.com/realm/SwiftLint", revision: "8d4ebcc723fb5b8c13bd67227b640f5675943309"),
+        .package(url: "https://github.com/rohrbecka/ProfilePath", revision: "17f6e88dc27f0c86ec4b819e6acdda8a259242be")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .target(
-            name: "ProfilePath",
-            dependencies: [],
-            plugins: [.plugin(name: "SwiftLintPlugin", package: "SwiftLint")]),
-        .testTarget(
-            name: "ProfilePathTests",
-            dependencies: ["ProfilePath"]),
         .target(
             name: "EN13674",
             dependencies: ["ProfilePath"],

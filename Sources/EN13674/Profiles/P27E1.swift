@@ -29,9 +29,9 @@ internal struct P27E1: RailProfile {
         Fillet(radius: 2.0)
         Line(Angle(dx: 3, dy: -1), to: (0, -35))
         Fillet(radius: 8)
-        Line(from: (-6.5, -35), to: (-5.5, -120.0 + 67)) // TODO: starting point not exactly correct
+        Line(from: (-6.5, -35), to: (-5.5, -120.0 + 67))
         Line(to: (-5.5, -120.0 + 37 ))
-        Line(to: (-7.5, -120 + 19))  // TODO: target point not exactly correct
+        Line(to: (-7.5, -120 + 19))
         Fillet(radius: 8.0)
         Line(from: (0, -120 + 19), Angle(dx: -3, dy: -1) )
         Fillet(radius: 8.0)
@@ -45,9 +45,9 @@ internal struct P27E1: RailProfile {
         Fillet(radius: 8.0)
         Line(Angle(dx: -3, dy: 1), to: (0, -120+19) )
         Fillet(radius: 8.0)
-        Line(from: (7.5, -120+19), to: (5.5, -120.0+37)) // TODO: starting point not exactly correct
+        Line(from: (7.5, -120+19), to: (5.5, -120.0+37))
         Line(to: (5.5, -120+37+30))
-        Line(to: (6.5, -35))   // TODO: target point not exactly correct
+        Line(to: (6.5, -35))
         Fillet(radius: 8.0)
         Line(from: (0, -35), Angle(dx: 3, dy: 1))
         Fillet(radius: 2.0)
